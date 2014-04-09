@@ -25,61 +25,49 @@ In your project's Gruntfile, add a section named `templates_store` to the data o
 ```js
 grunt.initConfig({
   templates_store: {
-    options: {
-      // Task-specific options go here.
-    },
     your_target: {
-      // Target-specific file lists and/or options go here.
+      files {
+      
+      }
     },
   },
 });
 ```
-
-### Options
-
-#### options.separator
-Type: `String`
-Default value: `',  '`
-
-A string value that is used to do something with whatever.
-
-#### options.punctuation
-Type: `String`
-Default value: `'.'`
-
-A string value that is used to do something else with whatever else.
 
 ### Usage Examples
 
 #### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
+In this example, will be generated the file 'TStoreGenerated.js' containing the templates 'hello.hbs' in the folder 'test/ fixtures/'.
 
 ```js
 grunt.initConfig({
   templates_store: {
-    options: {},
     files: {
-      'dest/default_options': ['src/testing', 'src/123'],
+      'tmp/TStoreGenerated.js': ['test/fixtures/hello.hbs'],
     },
   },
 });
 ```
 
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
+##### hello.hbs
+```html
+<h1>Hello World!</h1>
+<div class="well">
+	{{lint-to 'https://github.com/brunoleaomaia/grunt-templates-store' GitHub}}
+</div>
+```
 
+##### TStoreGenerated.js
 ```js
-grunt.initConfig({
-  templates_store: {
-    options: {
-      separator: ': ',
-      punctuation: ' !!!',
-    },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-});
+TStore = TStore || {};
+TStore.add = function(key, template) {
+	this.templates = this.templates || [];
+	this.templates[key] = template;
+};
+TStore.get = function(key) {
+	return this.templates[key] || false;
+};
+TStore.add('hello', '<h1>Hello World!</h1>\n<div class="well">\n	{{lint-to \'https://github.com/brunoleaomaia/grunt-templates-store\' GitHub}}\n</div>\n');
 ```
 
 ## Contributing
