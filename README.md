@@ -27,7 +27,6 @@ grunt.initConfig({
   templates_store: {
     your_target: {
       files {
-      
       }
     },
   },
@@ -37,9 +36,11 @@ grunt.initConfig({
 ### Usage Examples
 
 #### Default Options
-In this example, will be generated the file 'TStoreGenerated.js' containing the templates 'hello.hbs' in the folder 'test/ fixtures/'.
+In this example, will be generated the file `TStoreGenerated.js` containing the template `test/fixtures/hello.hbs`.
 
+##### Gruntfile.js
 ```js
+...
 grunt.initConfig({
   templates_store: {
     files: {
@@ -47,6 +48,7 @@ grunt.initConfig({
     },
   },
 });
+...
 ```
 
 ##### hello.hbs
