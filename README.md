@@ -1,6 +1,6 @@
 # grunt-templates-store
 
-> Generates a Templates Store
+> Grunt plugin to store templates in a Javascript Collection.
 
 ## Getting Started
 This plugin requires Grunt `~0.4.4`
