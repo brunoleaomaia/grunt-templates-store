@@ -24,7 +24,7 @@ module.exports = function(grunt) {
     templates_store: {
       default_options: {
         options: {
-
+          name: 'window.TemplatesStore'
         },
         files: {
           'tmp/TStoreGenerated.js': ['test/fixtures/*.hbs'],

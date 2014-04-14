@@ -1,7 +1,7 @@
 {
   "name": "grunt-templates-store",
   "description": "Generates a Templates Store",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/brunoleaomaia/grunt-templates-store",
   "author": {
     "name": "Bruno Maia",

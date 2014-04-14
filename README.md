@@ -26,7 +26,11 @@ In your project's Gruntfile, add a section named `templates_store` to the data o
 grunt.initConfig({
   templates_store: {
     your_target: {
+      options: {
+        name: ""
+      },
       files {
+        "":[]
       }
     },
   },
@@ -43,6 +47,9 @@ In this example, will be generated the file `TStoreGenerated.js` containing the 
 ...
 grunt.initConfig({
   templates_store: {
+    options: {
+      name: 'window.TemplatesStore'
+    },
     files: {
       'tmp/TStoreGenerated.js': ['test/fixtures/hello.hbs'],
     },
@@ -61,15 +68,16 @@ grunt.initConfig({
 
 ##### TStoreGenerated.js
 ```js
-TStore = TStore || {};
-TStore.add = function(key, template) {
-	this.templates = this.templates || [];
-	this.templates[key] = template;
+window.TemplatesStore = {
+  add: function(key, template) {
+    this.templates = this.templates || [];
+    this.templates[key] = template;
+  },
+  get: function(key) {
+    return this.templates[key] || false;
+  }
 };
-TStore.get = function(key) {
-	return this.templates[key] || false;
-};
-TStore.add('hello', '<h1>Hello World!</h1>\n<div class="well">\n	{{lint-to \'https://github.com/brunoleaomaia/grunt-templates-store\' GitHub}}\n</div>\n');
+window.TemplatesStore.add('hello', '<h1>Hello World!</h1>\n<div class="well">\n {{lint-to \'https://github.com/brunoleaomaia/grunt-templates-store\' GitHub}}\n</div>\n');
 ```
 
 ## Contributing

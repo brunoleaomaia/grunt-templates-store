@@ -12,15 +12,19 @@ module.exports = function(grunt) {
 
 	grunt.registerMultiTask('templates_store', 'Generates a Templates Store', function() {
 
-		var options = this.options();
+		var options = this.options({
+			name: 'window.TemplatesStore'
+		});
+
 		var base = [
-			'TStore = TStore || {};',
-			'TStore.add = function(key, template) {',
-			'	this.templates = this.templates || [];',
-			'	this.templates[key] = template;',
-			'};',
-			'TStore.get = function(key) {',
-			'	return this.templates[key] || false;',
+			options.name + ' = {',
+			'	add: function(key, template) {',
+			'		this.templates = this.templates || [];',
+			'		this.templates[key] = template;',
+			'	},',
+			'	get: function(key) {',
+			'		return this.templates[key] || false;',
+			'	}',
 			'};'
 		].join('\n');
 
@@ -36,7 +40,7 @@ module.exports = function(grunt) {
 					src = '';
 				if (grunt.file.exists(filepath)) {
 					src = grunt.util.addSlashes(grunt.file.read(filepath));
-					base += '\n' + 'TStore.add(\'' + template + '\', \'' + src + '\');';
+					base += '\n' + options.name + '.add(\'' + template + '\', \'' + src + '\');';
 				} else {
 					grunt.log.warn('Source file "' + filepath + '" not found.');
 				}
